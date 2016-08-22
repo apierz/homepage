@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<title>ANDY PUBLIC LIBRARY</title>
 <html>
 	
 <style>
@@ -7,20 +8,69 @@
 		font-family: "Lucida Console", Monaco, monospace;
 	}
 	
-	p.left {
+	
+	div.titlebar {
 		color: #282a36;
 		background-color: #ffb86c;
+	}
+	
+	p.left {
+		left: 0;
+		top: 0;
+	}
+	
+	p.center {
+		position: absolute;
+		top: 0;
+		width: 100%;
+		text-align: center;
+	}
+	
+	p.right {
+		position: absolute;
+		top: 0;
+		width 10em;
+		right: 1em;
+		
 	}
 </style>
 	
 	
-<body>
+<body onload="startTime()">
 
+<!-- Title Bar -->
+
+<div class="titlebar">
 <p class="left" id="today"></p>
+<p class="center">ANDY PUBLIC LIBRARY</p>
+<p class="right" id="clock"></p>
+</div>
 
 <script>
-	var today = new Date().toISOString().slice(0, 10);
+	var options = {
+    year: "numeric", month: "short", day: "numeric"
+	};
+	
+	var today = new Date().toLocaleDateString("en-gb", options).slice(0, 12);
 	document.getElementById('today').innerHTML = today.toString()
+	
+	function startTime() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+    m = checkTime(m);
+    s = checkTime(s);
+    document.getElementById('clock').innerHTML =
+    h + ":" + m + ":" + s;
+    var t = setTimeout(startTime, 500);
+	}
+
+	function checkTime(i) {
+  	  if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+  	  return i;
+	}
+	
 </script>
 
 </body>
