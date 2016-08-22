@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	
+<style>
+	html {
+		background-color: #282a36;
+		font-family: "Lucida Console", Monaco, monospace;
+	}
+	
+	p.left {
+		color: #282a36;
+		background-color: #ffb86c;
+	}
+</style>
+	
+	
+<body>
+
+<p class="left" id="today"></p>
+
+<script>
+	var today = new Date().toISOString().slice(0, 10);
+	document.getElementById('today').innerHTML = today.toString()
+</script>
+
+</body>
+</html>
