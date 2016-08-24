@@ -1,58 +1,213 @@
 <!DOCTYPE html>
-<title>ANDY PUBLIC LIBRARY</title>
+
 <html>
 	
+<head>
+<title>ANDY PUBLIC LIBRARY</title>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+	
 <style>
+
 	html {
 		background-color: #282a36;
-		font-family: "Lucida Console", Monaco, monospace;
+		color: #ffb86c;
+		font-family: "Hack", "Lucida Console", Monaco, monospace;
 	}
 	
+	.block {
+		display: block;
+		width: 150px;
+		
+	}
 	
-	div.titlebar {
+	.thirdline {
+		width: 100%;
+	}
+	
+	div.titlebar, .protocol {
 		color: #282a36;
 		background-color: #ffb86c;
 	}
 	
-	p.left {
-		left: 0;
-		top: 0;
+	span.left {
+		float: left;
 	}
 	
-	p.center {
-		position: absolute;
-		top: 0;
+	span.center {
+		text-align: center;
 		width: 100%;
+	}
+	
+	span.right {
+		float: right;
+		text-align: right;
+	}
+	
+	span.leftish {
+		position:absolute;
+		left: 5%;
+	}
+	
+	span.centerish {
+		position: absolute;
+		left: 30%;
+	}
+	
+	span.rightish {
+		position: absolute;
+		left: 60%;
+	}
+	
+
+	
+	.protocol {
+		float: right;
+		position: relative;
+		left: -50%;
+		text-align: right;
+		
+	}
+	
+	.subtitle {
 		text-align: center;
 	}
 	
-	p.right {
-		position: absolute;
-		top: 0;
-		width 10em;
-		right: 1em;
 		
+	a {
+		background-color: #282a36;
+		color: #ffb86c;
+		text-decoration: none;
 	}
+	
+	a:hover {
+		color: #282a36;
+		background-color: #ffb86c;
+	}
+	
+	table {
+		position: relative;
+		top: 5em;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+	
+	.prompt {
+		position: relative;
+		display: inline-block;
+		color: #282a36;
+		background-color: #ffb86c;
+	}
+	
+	form {
+		display: inline-block;
+	}
+	
+	input {
+		background-color: #282a36;
+		color: #ffb86c;
+		border: 0;
+		font-size: 12pt;
+	}
+	
+	input:focus {
+		border:0;
+		outline: none;
+	}
+		
 </style>
 	
 	
-<body onload="startTime()">
+<body onload="startTime(); getUserInfo()" >
+	
+<!-- Status Bar -->
+<div class="statusbar" style="position:relative;">
+	<span class="block leftish" id="ip"></span>
+	<span class="block centerish" id="timezone"></span>
+    <span class="block rightish" id="offset"></span>
+	</br>
+</div>
 
 <!-- Title Bar -->
 
 <div class="titlebar">
-<p class="left" id="today"></p>
-<p class="center">ANDY PUBLIC LIBRARY</p>
-<p class="right" id="clock"></p>
+	<span class="block left" id="today"></span>
+	<span class="block right" id="clock"></span>
+	<span class="block center">ANDY PUBLIC LIBRARY</span>
 </div>
 
-<script>
+<div class = "thirdLine">
+	<span class ="protocol" id="hostname"></span>
+</div>
+
+<!-- Subtitle -->
+
+<div class="subtitle">
+	<p></br>Welcome to the Online Public Access Catalog! </br> Please select one of the options below.</p>
+	</br>
+</div>
+
+<!-- Menu -->
+
+<div class="menu">
+	<table>
+		<tr>
+			<td> <a href="https://www.reddit.com/r/mechanicalkeyboards">1.&nbsp;&nbsp;r/mechanicalkeyboards</a> </td>
+		</tr>
+		<tr>
+			
+			<td> <a href="https://www.reddit.com/r/unixporn">2.&nbsp;&nbsp;r/unixporn</a> </td>
+		</tr>
+		<tr>
+			<td> <a href="https://www.memeorandum.com">3.&nbsp;&nbsp;Memeorandum</a> </td>
+		</tr>
+		<tr>
+			<td> <a href="https://www.techmeme.com">4.&nbsp;&nbsp;Techmeme</a> </td>
+		</tr>
+		<tr>
+			<td> <a href="https://theringer.com">5.&nbsp;&nbsp;The Ringer</a> </td>
+		</tr>
+		<tr>
+			<td> <a href="https://news.ycombinator.com">6.&nbsp;&nbsp;Hacker News</a> </td>
+		</tr>
+		<tr>
+			<td> <a href="https://www.github.com">7.&nbsp;&nbsp;Github</a> </td>
+		</tr>
+		<tr>
+			<td> <a href="http://www.mixedmartialarts.com/">8.&nbsp;&nbsp;The Underground</a> </td>
+		</tr>
+		<tr>
+			<td> <a href="https://www.youtube.com">9.&nbsp;&nbsp;Youtube</a> </td>
+		</tr>
+	</table>		
+</div>
+
+<!-- Bottom -->
+
+<div class="bottom">
+	<span class="prompt">Enter your selection(s) and press &lt;Enter&gt; :</span><form name="userForm"><input id="inputBox" onkeydown="executeUserChoice()" type="text" name="menuChoice" autofocus="autofocus"></form>
+	<span></br>Or enter a SEARCH query.</span>
+</div>
+
+
+
+<script type="text/javascript">
+	
+	function formfocus() {
+		document.getElementById('input-box').focus();
+	}
+	
+	var hostname = window.location.protocol;
+	document.getElementById('hostname').innerHTML = hostname;
+	
+
 	var options = {
     year: "numeric", month: "short", day: "numeric"
 	};
 	
 	var today = new Date().toLocaleDateString("en-gb", options).slice(0, 12);
 	document.getElementById('today').innerHTML = today.toString()
+
 	
 	function startTime() {
     var today = new Date();
@@ -71,6 +226,77 @@
   	  return i;
 	}
 	
+	function executeUserChoice () {
+		var x = event.keyCode;
+		var siteToGoTo = "https://www.google.com";
+		
+		if (x == 13) {
+			var userInput = this['inputBox'].value;
+			
+			switch(userInput) {
+				case "1":
+ 					window.open("https://www.reddit.com/r/mechanicalkeyboards", false);
+ 					break;
+ 				case "2":
+ 					window.open("https://www.reddit.com/r/unixporn", false);
+ 					break;
+ 				case "3":
+ 					window.open("https://www.memeorandum.com", false);
+ 					break;
+ 				case "4":
+ 					window.open("https://www.techmeme.com", false);
+ 					break;
+ 				case "5":
+ 					window.open("https://theringer.com", false);
+ 					break;
+ 				case "6":
+ 					window.open("https://news.ycombinator.com", false);
+ 					break;
+ 				case "7":
+ 					window.open("https://www.github.com", false);
+ 					break;
+ 				case "8":
+ 					window.open("http://www.mixedmartialarts.com", false);
+ 					break;
+ 				case "9":
+ 					window.open("https://www.youtube.com", false);
+ 					break;
+ 				default:
+ 					window.open("https://duckduckgo.com/"+userInput, false)
+ 					
+			}		
+		}
+		return false;
+	}
+	
+	function getUserInfo() {
+		$.getJSON('http://freegeoip.net/json/?callback=?', function(data) {
+			console.log(JSON.stringify(data, null, 2));
+			console.log(data.ip);
+ 			var ip = data.ip;
+ 			var timezone = data.time_zone;
+ 			
+ 			date = new Date();
+ 			minutes =date.getTimezoneOffset();
+ 			hours = minutes / 60;
+ 			offset = hours.toString()+":00";
+ 			
+ 			if(minutes < 0) {
+	 			offest = "-"+offset;
+ 			}
+ 			else {
+	 			offset = "+"+offset;
+ 			}
+ 			
+ 			console.log(offset)
+			
+			document.getElementById('ip').innerHTML = ip;
+			document.getElementById('timezone').innerHTML = timezone;
+			document.getElementById('offset').innerHTML = offset;
+		});
+	}
+	
+
 </script>
 
 </body>
