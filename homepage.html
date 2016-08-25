@@ -15,6 +15,11 @@
 		font-family: "Hack", "Lucida Console", Monaco, monospace;
 	}
 	
+	body {
+		width: 700px;
+		margin: auto;
+	}
+	
 	.block {
 		display: block;
 		width: 150px;
@@ -185,7 +190,7 @@
 <!-- Bottom -->
 
 <div class="bottom">
-	<span class="prompt">Enter your selection(s) and press &lt;Enter&gt; :</span><form name="userForm"><input id="inputBox" onkeydown="executeUserChoice()" type="text" name="menuChoice" autofocus="autofocus"></form>
+	<span class="prompt">Enter your selection(s) and press &lt;Enter&gt; :</span><form name="userForm" onsubmit="return executeUserChoice();" id="theForm"><input id="inputBox" type="text" name="menuChoice" autofocus="autofocus"></form>
 	<span></br>Or enter a SEARCH query.</span>
 </div>
 
@@ -207,6 +212,7 @@
 	
 	var today = new Date().toLocaleDateString("en-gb", options).slice(0, 12);
 	document.getElementById('today').innerHTML = today.toString()
+	var userInput = this['inputBox'].value;
 
 	
 	function startTime() {
@@ -216,6 +222,8 @@
     var s = today.getSeconds();
     m = checkTime(m);
     s = checkTime(s);
+    
+    
     document.getElementById('clock').innerHTML =
     h + ":" + m + ":" + s;
     var t = setTimeout(startTime, 500);
@@ -226,46 +234,46 @@
   	  return i;
 	}
 	
-	function executeUserChoice () {
-		var x = event.keyCode;
-		var siteToGoTo = "https://www.google.com";
+	
+	function executeUserChoice() {
 		
-		if (x == 13) {
-			var userInput = this['inputBox'].value;
+		var x = event.keyCode;
+		var userInput = document.getElementById("inputBox").value;
+		//var userInput = this['inputBox'].value;
+			
 			
 			switch(userInput) {
 				case "1":
- 					window.open("https://www.reddit.com/r/mechanicalkeyboards", false);
+ 					window.open("https://www.reddit.com/r/mechanicalkeyboards", "_self");
  					break;
  				case "2":
- 					window.open("https://www.reddit.com/r/unixporn", false);
+ 					window.open("https://www.reddit.com/r/unixporn", "_self");
  					break;
  				case "3":
- 					window.open("https://www.memeorandum.com", false);
+ 					window.open("https://www.memeorandum.com", "_self");
  					break;
  				case "4":
- 					window.open("https://www.techmeme.com", false);
+ 					window.open("https://www.techmeme.com", "_self");
  					break;
  				case "5":
- 					window.open("https://theringer.com", false);
+ 					window.open("https://theringer.com", "_self");
  					break;
  				case "6":
- 					window.open("https://news.ycombinator.com", false);
+ 					window.open("https://news.ycombinator.com", "_self");
  					break;
  				case "7":
- 					window.open("https://www.github.com", false);
+ 					window.open("https://www.github.com", "_self");
  					break;
  				case "8":
- 					window.open("http://www.mixedmartialarts.com", false);
+ 					window.open("http://www.mixedmartialarts.com", "_self");
  					break;
  				case "9":
- 					window.open("https://www.youtube.com", false);
+ 					window.open("https://www.youtube.com", "_self");
  					break;
  				default:
- 					window.open("https://duckduckgo.com/"+userInput, false)
+ 					window.open("https://duckduckgo.com/"+userInput, "_self")
  					
 			}		
-		}
 		return false;
 	}
 	
