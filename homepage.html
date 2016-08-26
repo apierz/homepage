@@ -9,10 +9,11 @@
 	
 <style>
 
-	html {
+	html, a {
 		background-color: #282a36;
 		color: #ffb86c;
 		font-family: "Hack", "Lucida Console", Monaco, monospace;
+		text-decoration: none;
 	}
 	
 	body {
@@ -30,10 +31,11 @@
 		width: 100%;
 	}
 	
-	div.titlebar, .protocol {
+	.inverseColor, a:hover {
 		color: #282a36;
-		background-color: #ffb86c;
+		background-color: #ffb86c;	
 	}
+	
 	
 	span.left {
 		float: left;
@@ -64,9 +66,7 @@
 		left: 60%;
 	}
 	
-
-	
-	.protocol {
+	#hostname {
 		float: right;
 		position: relative;
 		left: -50%;
@@ -76,18 +76,6 @@
 	
 	.subtitle {
 		text-align: center;
-	}
-	
-		
-	a {
-		background-color: #282a36;
-		color: #ffb86c;
-		text-decoration: none;
-	}
-	
-	a:hover {
-		color: #282a36;
-		background-color: #ffb86c;
 	}
 	
 	table {
@@ -135,14 +123,14 @@
 
 <!-- Title Bar -->
 
-<div class="titlebar">
+<div id="titlebar" class="inverseColor">
 	<span class="block left" id="today"></span>
 	<span class="block right" id="clock"></span>
 	<span class="block center">ANDY PUBLIC LIBRARY</span>
 </div>
 
-<div class = "thirdLine">
-	<span class ="protocol" id="hostname"></span>
+<div id="thirdLine" class="inverseColor">
+	<span class ="inverseColor" id="hostname"></span>
 </div>
 
 <!-- Subtitle -->
