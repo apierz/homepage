@@ -96,6 +96,16 @@
 		display: inline-block;
 	}
 	
+	td {
+		text-align: left;
+	}
+	
+	.smallTD {
+		text-align: right;
+	}
+	
+	
+	
 	input {
 		background-color: #282a36;
 		color: #ffb86c;
@@ -138,6 +148,7 @@
 <div class="subtitle">
 	<p></br>Welcome to the Online Public Access Catalog! </br> Please select one of the options below.</p>
 	</br>
+	</br>
 </div>
 
 <!-- Menu -->
@@ -145,32 +156,44 @@
 <div class="menu">
 	<table>
 		<tr>
-			<td> <a href="https://www.reddit.com/r/mechanicalkeyboards">1.&nbsp;&nbsp;r/mechanicalkeyboards</a> </td>
+			<td class = "smallTD">1.</td>
+			<td> <a href="https://www.reddit.com/r/mechanicalkeyboards">r/mechanicalkeyboards</a> </td>
 		</tr>
 		<tr>
-			
-			<td> <a href="https://www.reddit.com/r/unixporn">2.&nbsp;&nbsp;r/unixporn</a> </td>
+			<td class = "smallTD">2.</td>
+			<td> <a href="https://www.reddit.com/r/unixporn">r/unixporn</a> </td>
 		</tr>
 		<tr>
-			<td> <a href="https://www.memeorandum.com">3.&nbsp;&nbsp;Memeorandum</a> </td>
+			<td class = "smallTD">3.</td>
+			<td> <a href="https://www.memeorandum.com">Memeorandum</a> </td>
 		</tr>
 		<tr>
-			<td> <a href="https://www.techmeme.com">4.&nbsp;&nbsp;Techmeme</a> </td>
+			<td class = "smallTD">4.</td>
+			<td> <a href="https://www.techmeme.com">Techmeme</a> </td>
 		</tr>
 		<tr>
-			<td> <a href="https://theringer.com">5.&nbsp;&nbsp;The Ringer</a> </td>
+			<td class = "smallTD">5.</td>
+			<td> <a href="https://theringer.com">The Ringer</a> </td>
 		</tr>
 		<tr>
-			<td> <a href="https://news.ycombinator.com">6.&nbsp;&nbsp;Hacker News</a> </td>
+			<td class = "smallTD">6.</td>
+			<td> <a href="https://news.ycombinator.com">Hacker News</a> </td>
 		</tr>
 		<tr>
-			<td> <a href="https://www.github.com">7.&nbsp;&nbsp;Github</a> </td>
+			<td class = "smallTD">7.</td>
+			<td> <a href="https://www.github.com">Github</a> </td>
 		</tr>
 		<tr>
-			<td> <a href="http://www.mixedmartialarts.com/">8.&nbsp;&nbsp;The Underground</a> </td>
+			<td class = "smallTD">8.</td>
+			<td> <a href="http://www.mixedmartialarts.com/">The Underground</a> </td>
 		</tr>
 		<tr>
-			<td> <a href="https://www.youtube.com">9.&nbsp;&nbsp;Youtube</a> </td>
+			<td class = "smallTD">9.</td>
+			<td> <a href="https://www.youtube.com">Youtube</a> </td>
+		</tr>
+		<tr>
+			<td class = "smallTD">10.</td>
+			<td> <a href="https://www.lynda.com">Lynda</a> </td>
 		</tr>
 	</table>		
 </div>
@@ -257,6 +280,9 @@
  					break;
  				case "9":
  					window.open("https://www.youtube.com", "_self");
+ 					break;
+ 				case "10":
+ 					window.open("https://www.lynda.com", "_self");
  					break;
  				default:
  					window.open("https://duckduckgo.com/"+userInput, "_self")
