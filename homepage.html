@@ -8,10 +8,16 @@
 </head>
 	
 <style>
+	
+/* 	Set Colors: */
+	:root {
+		--main-bg-color: #282a36;
+		--main-text-color:#ffb86c;
+	}
 
 	html, a {
-		background-color: #282a36;
-		color: #ffb86c;
+		background-color: var(--main-bg-color);
+		color: var(--main-text-color);
 		font-family: "Hack", "Lucida Console", Monaco, monospace;
 		text-decoration: none;
 	}
@@ -32,8 +38,8 @@
 	}
 	
 	.inverseColor, a:hover {
-		color: #282a36;
-		background-color: #ffb86c;	
+		color: var(--main-bg-color);
+		background-color: var(--main-text-color);	
 	}
 	
 	
