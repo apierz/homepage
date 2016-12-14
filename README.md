@@ -2,5 +2,5 @@ A simple custom homepage designed to mimic the old Dynix public library archive 
 
 Written in HTML and Javascript.
 
-![Screenshot](https://raw.githubusercontent.com/apierz/homepage/master/screenshot.png)
+![Screenshot](https://raw.githubusercontent.com/apierz/homepage/master/screenshot1.png)
 
