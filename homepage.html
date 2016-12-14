@@ -11,25 +11,33 @@
 	
 /* 	Set Colors: */
 	:root {
-		--main-bg-color: #262c34;
-		--main-text-color:#ecbe7b;
+		--main-bg-color: #272822;
+		--main-text-color: #e6db74;
+    --main-font-size: 20px;
 	}
 
 	html, a {
 		background-color: var(--main-bg-color);
 		color: var(--main-text-color);
 		font-family: "Hack", "Lucida Console", Monaco, monospace;
-		text-decoration: none;
+    text-decoration: none;
+    font-size: var(--main-font-size)
 	}
 	
 	body {
 		width: 700px;
 		margin: auto;
+    font-size: var(--main-font-size)
 	}
+
+  span {
+    font-size: var(--main-font-size)
+  }
 	
 	.block {
 		display: block;
 		width: 150px;
+    font-size: var(--main-font-size)
 		
 	}
 	
@@ -64,12 +72,12 @@
 	
 	span.centerish {
 		position: absolute;
-		left: 30%;
+		left: 40%;
 	}
 	
 	span.rightish {
 		position: absolute;
-		left: 60%;
+		left: 80%;
 	}
 	
 	#hostname {
@@ -94,8 +102,8 @@
 	.prompt {
 		position: relative;
 		display: inline-block;
-		color: #282a36;
-		background-color: #ffb86c;
+		color: var(--main-bg-color);
+		background-color: var(--main-text-color);
 	}
 	
 	form {
@@ -113,8 +121,8 @@
 	
 	
 	input {
-		background-color: #282a36;
-		color: #ffb86c;
+		background-color: #272822;
+		color: #e6db74;
 		border: 0;
 		font-size: 12pt;
 	}
@@ -207,7 +215,7 @@
 <!-- Bottom -->
 
 <div class="bottom">
-	<span class="prompt">Enter your selection(s) and press &lt;Enter&gt; :</span><form name="userForm" onsubmit="return executeUserChoice();" id="theForm"><input id="inputBox" type="text" name="menuChoice" autofocus="autofocus"></form>
+	<span class="prompt">Enter your selection and press &lt;Enter&gt; :</span><form name="userForm" onsubmit="return executeUserChoice();" id="theForm"><input id="inputBox" type="text" name="menuChoice" autofocus="autofocus"></form>
 	<span></br>Or enter a SEARCH query.</span>
 </div>
 
